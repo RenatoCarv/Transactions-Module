@@ -1,0 +1,281 @@
+@startuml
+!theme reddress-darkgreen
+
+package "Model" {
+    class BancoModel {
+        -dataConfimacaoString
+        -idContaLogada
+        -idContaDestinatario
+        +BancoModel()
+        -criarTransacaoExternaPlaceholder(Connection)
+        +getCPFContraLogada(int)
+        +setDataConfimacaoString(String)
+        -criarTransacaoInternaPlaceholder(Connection)
+        +getIdContaLogada()
+        +verificarContaPropria(int)
+        +getIdContaFromThirdPartyTransfer(int,int)
+        -obterContaPlaceholder(Connection)
+        +getIdContaDestinatario()
+        +getSaldoConta (int)
+        -obterldContaExternaPlaceholder (Connection)
+        +realizarLogin(String, String)
+        +setldContalogada(int)
+        -registrarTransacaoExternaNoRegistro (int, String, Connection)
+        +getSaldoContaExterna (int)
+        +getNomeBancoExterno (int)
+        +realizarTransacac(String, String, int, int)
+        +getldContaFromSeifTransfer (int)
+        +getidContaFromOtherBankTransfer (int, int, int)
+        +buscardBancoExterno (int)
+        +verificarContaTerceiro (int, Int)
+        +verificarContaExterna (int, int, int)
+        -registrarTransacaointernaNoRegistro (int, String, Connection)
+        +getDataConfimacao(int, String)
+        +setldContaDestinatario(int)
+        +getCpfDestinatario (int, String)
+        +getNumeroContaiLogada(int)
+        +getNomeBanco(int, String)
+        +getTipoConta (int, String)
+        -getNomeBancoInterno int, String)
+        -atualizarSaldoContaExterna(Connection, int, double)
+        +getNomeDestinatario(int, String)
+        +getNomeCliente (int)
+        -atualizarSaldoConta(Connection, int, double)
+        +getDataConfirmacao(String)
+    }
+
+    class BancoModelManager {
+        -idContaLogada
+        +BancoModelManager()
+        +realizarLogin(String, String)
+        +setIdContaLogada(int)
+        +getNomeUsuario(int)
+        +getIdContaLogada()
+
+    }
+}
+
+package "Controller" {
+    class BancoController {
+        -BancoModel bancoModel
+        -MenuScreen menuScreen
+        -TransferScreen transferScreen
+        -LoginScreen loginScreen
+        -HistoryScreen historyScreen
+        +BancoController()
+        +login(String, String)
+        +showConfirmationScreen()
+        +showPendingScreen()
+        +goBackToMenu()
+        +goBackToMenuFromHistory()
+        +main(String[] args)
+        +getLoginScreen()
+        -validateSelfTransfer()
+        -validateThirdPartyTransfer()
+        -validateOtherBankTransfer()
+        }
+     class BancoControllerManager {
+        +BancoControllerManager()
+        -modelManager BancoModelManager
+        -managerMenuScreen ManagerMenuScreen
+        -managerLogInScreen ManagerLoginScreen
+        -managerHistoryScreen ManagerHistoryScreen
+        +goBackToMenuFromHistory()
+        +login(String, String)
+        +main(String[])
+        +getManagerLoginScreen() ManagerLoginScreen
+    }
+}
+
+package "UI Components" {
+    class ComboBoxUI {
+        +ComboBoxUI()
+        #createPopup()
+        #createArrowButton()
+    }
+
+    class CustomCaret {
+        -Color caretColor
+        +CustomCaret(Color)
+        +install()
+        +damage(Rectangle)
+    }
+
+    class CustomScrollBarUI {
+        +CustomScrollBarUI()
+        #configureScrollBarColors()
+        #createDecreaseButton()
+        #createIncreaseButton(int)
+        -createZeroButton()
+
+    }
+
+    class StylizedButton {
+        -shape
+        -hoverColor
+        -hoverProgress
+        -hoverTimer
+        +StylizedButton(String)
+        +paintComponent(Graphics)
+        +paintBorder(Graphics)
+        +contains(int, int)
+        +startHoverAnimation(boolean)
+    }
+
+    class RoundedFrame {
+        +RoundedFrame(String, int, int, int, int)
+    }
+}
+
+package "Database" {
+    class DatabaseConnection {
+        -user
+        -url
+        -password
+        +DatabaseConnection(String, String, String)
+        +closeConnection(Connection)
+        +getConnection()
+    }
+}
+
+package "Screens" {
+    class ConfirmationScreen {
+        -BancoModel bancoModel
+        -TransferScreen transferScreen
+        -MenuScreen menuScreen
+        -int idContaDestinatario
+        +ConfirmationScreen(MenuScreen, TransferScreen, int)
+        +initiPanels()
+        +createLayeredPane()
+    }
+
+    class HistoryScreen {
+        +HistoryScreen(BancoController, MenuScreen)
+        -MenuScreen menuScreen
+        -Controller BancoController
+        -btnVoltar
+        -initComponents()
+        -createLayeredPane()
+    }
+
+    class LoginScreen {
+        -BancoController bancoController
+        -JTextField textCPF
+        -JPasswordField textSenha
+        -JButton btnLogarUsuario
+        -JLabel errorLabel
+        +LoginScreen(BancoController)
+        +getTextCPF()
+        +getBtnLogarUsuario()
+        +getTextSenha()
+        -createLayeredPane()
+        -initiPanels()
+        -createTextField()
+        -createPasswordField()
+        +setError(String)
+    }
+
+    class ManagerHistoryScreen {
+        -bancoControllerManager BancoControllerManager
+        +ManagerHistoryScreen(BancoControllerManager, ManagerMenuScreen)
+        -backButton JButton
+        -managerMenuScreen ManagerMenuScreen
+        -initComponents()
+        -createLayeredPane()
+    }
+
+    class ManagerLoginScreen {
+        +ManagerLoginScreen()
+        -textSenha JPasswordField
+        -errorLabel JLabel
+        -textCPF JTextField
+        -btnLogarUsuario JButton
+        +getBtnLogarUsuario()
+        +getTextSenha()
+        -initPanels()
+        -createLayeredPane()
+        -createTextField()
+        +setError(String)
+        +getTextCPF()
+        -createPasswordField()
+    }
+
+    class ManagerMenuScreen {
+        -JButton historyButton
+        -int idContaLogada
+
+        +ManagerMenuScreen(int)
+        -initiPanels()
+        +getBtnHistory()
+        -createLayeredPane()
+    }
+
+    class MenuScreen {
+        +MenuScreen(int)
+        -btnNext JButton
+        -textFieldNumeroBanco JTextField
+        -transferOptions JComboBox
+        -btnHistory JButton
+        -textFieldNumeroConta JTextField
+        -textFieldNumeroAgencia JTextField
+        -idContaLogada
+        -selectedTransactionType
+        -initPanels()
+        -CreatePanelForSelfTransfer(JPanel)
+        -CreatePanelForThirdPartyTransfer(JPanel)
+        +getTextFieldNumeroAgencia()
+        +getSelectedTransactionType()
+        -clearDynamicComponents(JLayredPane)
+        + getTextFieldNumeroBanco()
+        -createLayeredPane()
+        +refreshComponents()
+        -createPanelForOtherBankTransfer(JPanel)
+        +getTextFieldNumeroConta()
+        +getBtnHistory()
+        +getBtnNext()
+        -createTextField(int)
+        +getTransferOptions()
+    }
+
+    class PendingScreen {
+        -BancoModel bancoModel
+        -TransferScreen transferScreen
+        -MenuScreen menuScreen
+        -int idContaDestinatario
+        +PendingScreen(MenuScreen, TransferScreen, int)
+        -initiPanels()
+        -createLayeredPane()
+    }
+
+    class TransferScreen {
+        -BancoController bancoController
+        -MenuScreen menuScreen
+        -int idContaLogada
+        -int idContaDestinatario
+        -String valorTransacao
+        -JLayeredPane currentPanel
+        +TransferScreen(BancoController, int, int, MenuScreen)
+        -initiPanels()
+        -createLayeredPane()
+        -createAndAddNewPanel(JLayeredPane)
+        -createTextField()
+        +getValorTransacao()
+    }
+}
+
+
+BancoController --> BancoModel
+MenuScreen --> BancoController
+ManagerHistoryScreen --> BancoControllerManager
+ManagerMenuScreen --> BancoControllerManager
+ManagerLoginScreen --> BancoControllerManager
+TransferScreen --> BancoController
+LoginScreen --> BancoController
+PendingScreen --> TransferScreen
+PendingScreen --> MenuScreen
+ConfirmationScreen --> TransferScreen
+ConfirmationScreen --> MenuScreen
+HistoryScreen --> BancoController
+HistoryScreen --> MenuScreen
+
+@enduml
