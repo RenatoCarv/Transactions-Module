@@ -33,11 +33,3 @@ A documentação a seguir detalha os aspectos técnicos, funcionais e de design 
 ### Diagramas de Casos de Uso
 - Diagrama de Casos de Uso do Módulo de Transações:
 <https://lucid.app/lucidchart/651aa827-b140-47f4-8385-da6320c68666/edit?viewport_loc=-1477%2C-1171%2C2452%2C1222%2C0_0&invitationId=inv_be7f4bd3-8043-452a-b926-ceb22360efea>
-
-## Instalação
-
-Abaixo iremos definir instruções de instalação e requisitos do sistema.
-
-## Uso
-
-Abaixo iremos definir instruções sobre como usar o sistema desenvolvido do nosso sistema.
