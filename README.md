@@ -10,7 +10,7 @@ A documentação a seguir detalha os aspectos técnicos, funcionais e de design 
 
 ### 4Ps do Módulo
 
-- **Pessoa**: O módulo de transações bancárias foi desenvolvido com foco nos diferentes stakeholders envolvidos. Tatiana Pereira atua como Stakeholder, fornecendo insights sobre as necessidades dos usuários finais, os clientes do banco. Oswaldo Borges desempenha o papel de Product Owner, garantindo que as demandas dos stakeholders sejam atendidas. A equipe de desenvolvimento, liderada por Pedro Aguiar como Scrum Master e composta por Yago Bezerra, Pedro Lucas de Medeiros e Renato Sá como desenvolvedores, trabalha para implementar as funcionalidades requeridas com eficiência e qualidade.
+- **Pessoa**: O módulo de transações bancárias foi desenvolvido com foco nos diferentes stakeholders envolvidos. Tatiana Pereira atua como Stakeholder, fornecendo insights sobre as necessidades dos usuários finais, os clientes do banco. Oswaldo Borges desempenha o papel de Product Owner, garantindo que as demandas dos stakeholders sejam atendidas. A equipe de desenvolvimento, liderada por Renato Carvalho como Scrum Master e composta por Yago Bezerra, Pedro Lucas de Medeiros e Pedro Aguiar como desenvolvedores, trabalha para implementar as funcionalidades requeridas com eficiência e qualidade.
 
 - **Projeto**: O projeto tem como objetivo principal oferecer uma solução de transferências bancárias que atenda às demandas dos clientes do banco. Isso inclui a realização de transferências para contas próprias, para terceiros e para outros bancos, além de fornecer um histórico de transações. O projeto também visa garantir requisitos não funcionais essenciais, como segurança, proteção de dados, usabilidade intuitiva e desempenho eficiente.
 
